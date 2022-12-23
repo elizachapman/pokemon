@@ -1,0 +1,207 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class PokemonTester {
+    public static void main(String[] args) {
+        int healthP = 100;
+        int healthT = 100;
+        ArrayList pokédex = new ArrayList();
+        Scanner input = new Scanner(System.in);
+        Pokemon pikachu = new Pokemon();
+        Pokemon squirtle = new Pokemon("Squirtle", "water", "blue","tiny turtle","grass");
+        Pokemon eevee = new Pokemon("Eevee", "normal", "brown","evolution","fighting");
+        Pokemon horsea = new Pokemon("Horsea", "water", "blue", "dragon", "electric");
+        Pokemon rattata = new Pokemon("Rattata", "mouse", "purple", "mouse","fighting");
+            
+        System.out.println(eevee.getName());
+        System.out.println(horsea.getType());
+        System.out.println(eevee.toString());
+        rattata.setColor("grey");
+        squirtle.setType("water");
+        horsea.setweakness("electric");
+        eevee.setCategory("evolution");
+
+        pokédex.add("pikachu");
+        pokédex.add("squirtle");
+        pokédex.add("eevee");
+        pokédex.add("horsea");
+        pokédex.add("rattata");
+        pokédex.add(1, "bulbasaur");
+        System.out.println(pokédex);
+        pokédex.set(0, "rattata");
+        pokédex.set(1, "eevee");
+        pokédex.set(2, "squirtle");
+        pokédex.set(3, "pikachu");
+        pokédex.set(4, "horsea");
+        pokédex.set(5, "bulbasaur");
+        System.out.println("\n" + pokédex);
+        pokédex.remove(5);
+        System.out.println("\n" + pokédex + "\n");
+        System.out.println("Your pokemon are: \n" + pikachu + "\n" + horsea + "\n"
+                + squirtle + "\n" + eevee + "\n" + rattata);
+        System.out.println("Do you want to start a battle?");
+        String fight = input.nextLine();
+        if (fight.equals("yes")) {
+            System.out.println("Which pokemon would you like to take to battle?");
+            String choice = input.nextLine();
+            choice = choice.toLowerCase();
+
+            while ((healthP > 0) && (healthT > 0)) {
+                System.out.println(
+                        "You chose " + choice + "!\nIt's a Pokémon battle between " + choice + " and Zebstrika");
+
+        
+
+                if (choice.equals("pikachu")) {
+                    pikachu.battleStart();
+                    System.out.println("You are attacking first, " + choice
+                            + " has 2 abilities, which would you like to use? ability 1 or ability2?\nFor ability 1, type 1 and for ability 2, type 2.");
+                    int pick = input.nextInt();
+                    while ((healthP > 0) && (healthT > 0)) {
+                        if (pick == 1) {
+                            healthT += pikachu.pik1();
+                            System.out.println("Great job, you did 20 damage last turn, and " + (100 - healthT)
+                                    + " total damage! Your opponent has "
+                                    + healthT + " health left!");
+                        }
+                        if (pick == 2) {
+                            healthT += pikachu.pik2();
+                            System.out.println("Great job, you did 4 damage last turn, and " + (100 - healthT)
+                                    + " total damage! Your opponent has "
+                                    + healthT + " health left!");
+                        }
+                        if ((healthP > 0) && (healthT > 0)) {
+                            healthP -= pikachu.defend();
+                            System.out.println("Your opponent is attacking now...\n\nOuch! Your opponent did "
+                                    + (100 - healthP) + " damage! You have " + healthP + " health left!");
+
+                            System.out.println("Which attack would you like to use next?");
+                            pick = input.nextInt();
+                        }
+
+                    }
+                }
+
+                if (choice.equals("horsea")) {
+                    horsea.battleStart();
+                    System.out.println("You are attacking first, " + choice
+                            + " has 2 abilities, which would you like to use? ability 1 or ability2?\nFor ability 1, type 1 and for ability 2, type 2.");
+                    int pick = input.nextInt();
+                    while ((healthP > 0) && (healthT > 0)) {
+                        if (pick == 1) {
+                            healthT += horsea.hor1();
+                            System.out.println("Great job, you did 20 damage last turn, and " + (100 - healthT)
+                                    + " total damage! Your opponent has "
+                                    + healthT + " health left!");
+                        }
+                        if (pick == 2) {
+                            healthT += horsea.hor2();
+                            System.out.println("Great job, you did 4 damage last turn, and " + (100 - healthT)
+                                    + " total damage! Your opponent has "
+                                    + healthT + " health left!");
+                        }
+                        if ((healthP > 0) && (healthT > 0)) {
+                            healthP -= horsea.defend();
+                            System.out.println("Your opponent is attacking now...\n\nOuch! Your opponent did "
+                                    + (100 - healthP) + " damage! You have " + healthP + " health left!");
+
+                            System.out.println("Which attack would you like to use next?");
+                            pick = input.nextInt();
+                        }
+                    }
+                }
+
+                if (choice.equals("squirtle")) {
+                    squirtle.battleStart();
+                    System.out.println("You are attacking first, " + choice
+                            + " has 2 abilities, which would you like to use? ability 1 or ability2?\nFor ability 1, type 1 and for ability 2, type 2.");
+                    int pick = input.nextInt();
+                    while ((healthP > 0) && (healthT > 0)) {
+                        if (pick == 1) {
+                            healthT += squirtle.squirtle1();
+                            System.out.println("Great job, you did 20 damage last turn, and " + (100 - healthT)
+                                    + " total damage! Your opponent has "
+                                    + healthT + " health left!");
+                        }
+                        if (pick == 2) {
+                            healthT += squirtle.squirtle2();
+                            System.out.println("Great job, you did 4 damage last turn, and " + (100 - healthT)
+                                    + " total damage! Your opponent has "
+                                    + healthT + " health left!");
+                        }
+                        if ((healthP > 0) && (healthT > 0)) {
+                            healthP -= squirtle.defend();
+                            System.out.println("Your opponent is attacking now...\n\nOuch! Your opponent did "
+                                    + (100 - healthP) + " damage! You have " + healthP + " health left!");
+
+                            System.out.println("Which attack would you like to use next?");
+                            pick = input.nextInt();
+                        }
+
+                    }
+                }
+
+                if (choice.equals("rattata")) {
+                    rattata.battleStart();
+                    System.out.println("You are attacking first, " + choice
+                            + " has 2 abilities, which would you like to use? ability 1 or ability2?\nFor ability 1, type 1 and for ability 2, type 2.");
+                    int pick = input.nextInt();
+                    while ((healthP > 0) && (healthT > 0)) {
+                        if (pick == 1) {
+                            healthT += rattata.rat1();
+                            System.out.println("Great job, you did 20 damage last turn, and " + (100 - healthT)
+                                    + " total damage! Your opponent has "
+                                    + healthT + " health left!");
+                        }
+                        if (pick == 2) {
+                            healthT += rattata.rat2();
+                            System.out.println("Great job, you did 4 damage last turn, and " + (100 - healthT)
+                                    + " total damage! Your opponent has "
+                                    + healthT + " health left!");
+                        }
+                        if ((healthP > 0) && (healthT > 0)) {
+                            healthP -= rattata.defend();
+                            System.out.println("Your opponent is attacking now...\n\nOuch! Your opponent did "
+                                    + (100 - healthP) + " damage! You have " + healthP + " health left!");
+
+                            System.out.println("Which attack would you like to use next?");
+                            pick = input.nextInt();
+                        }
+
+                    }
+                }
+                if (choice.equals("eevee")) {
+                    eevee.battleStart();
+                    System.out.println("You are attacking first, " + choice
+                            + " has 2 abilities, which would you like to use? ability 1 or ability2?\nFor ability 1, type 1 and for ability 2, type 2.");
+                    int pick = input.nextInt();
+                    while ((healthP > 0) && (healthT > 0)) {
+                        if (pick == 1) {
+                            healthT += eevee.eev1();
+                            System.out.println("Great job, you did 20 damage last turn, and " + (100 - healthT)
+                                    + " total damage! Your opponent has "
+                                    + healthT + " health left!");
+                        }
+                        if (pick == 2) {
+                            healthT += eevee.eev2();
+                            System.out.println("Great job, you did 4 damage last turn, and " + (100 - healthT)
+                                    + " total damage! Your opponent has "
+                                    + healthT + " health left!");
+                        }
+                        if ((healthP > 0) && (healthT > 0)) {
+                            healthP -= eevee.defend();
+                            System.out.println("Your opponent is attacking now...\n\nOuch! Your opponent did "
+                                    + (100 - healthP) + " damage! You have " + healthP + " health left!");
+
+                            System.out.println("Which attack would you like to use next?");
+                            pick = input.nextInt();
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+    }
+}
